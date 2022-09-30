@@ -44,7 +44,7 @@
         <a href='../controlador/procesaBorradoEdicion.php?del=f&id=$user[0]'>
         <img src='../images/pencil.png' alt='editar'></a>
         &nbsp; &nbsp;
-        <a href=`../controlador/procesaBorradoEdicion.php?del=t&id=$user[0]`>
+        <a href='../controlador/procesaBorradoEdicion.php?del=t&id=$user[0]'>
         <img src='../images/delete.png' alt='borrar'></a>
         </td>";
         print "</tr>";

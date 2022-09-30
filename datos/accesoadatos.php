@@ -63,16 +63,43 @@ function getRol($usuario)
     return $rol;
 }
 
+function ModificaUsuario($nombre,$pass,$rol){
+    $fichero = "../datos/badat.csv";
+    $users = leeUsuarios();
+    $nuevo='';
+    $fin = array_key_last($users);
+    foreach ($users as $c => $v) {
+        
+        if ($v[0]==$nombre) //Concatenamos todos los usuarios que no sean el dado
+        {
+            $nuevo .= $v[0].";".$pass.";".$rol;
+        }else {
+            $nuevo .= $v[0].";".$v[1].";".$v[2];   
+        }
+        if ($c!=$fin)
+        {
+            $nuevo .= "\n";
+        }
+    }
+    file_put_contents($fichero,$nuevo);
+}
+
 function borraUsuario($nombre) {
     $fichero = "../datos/badat.csv";
     $users = leeUsuarios();
-    $nuevo;
-    foreach ($users as $v) {
+    $nuevo = '';
+    $fin = array_key_last($users);
+    foreach ($users as $c => $v) {
         if ($v[0]!=$nombre) //Concatenamos todos los usuarios que no sean el dado
         {
-            $nuevo .= $v[0].";".$v[1].";".$v[2]."\n";
-        }      
+            $nuevo .= $v[0].";".$v[1].";".$v[2];
+            if (($c!=$fin))
+            {
+                $nuevo .= "\n";
+            }     
+        }
     }
+
     file_put_contents($fichero,$nuevo);
 }
 
