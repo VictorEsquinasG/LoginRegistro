@@ -7,11 +7,6 @@ function nuevoUsuario($nombre,$contraseña,$rol){
     file_put_contents($fichero,$nuevo); 
 }
 
-// function borraUsuario($usuario) {
-//     $user = leeUsuario($usuario);
-//     //Busca el usuario donde está lo saca y lo guarda
-// }
-
 function leeFichero($ruta="../datos/badat.csv") {
     $s = file_get_contents($ruta);
     return $s;

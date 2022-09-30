@@ -1,17 +1,19 @@
 <?php
     include("login/datos/accesoadatos.php");
     include("login/Helpers/valida.php");
+    include("login/Helpers/controlaSesion.php");
 
     $nombre = $_POST['nombreUsuario'];
     $password = $_POST['pass'];
 
-    if (existeUsuario($nombre)) //Comprobamos que existe el nombre de usuario en la base de datos
+    if (existeUsuario($nombre) && contraseñaCorrecta($nombre,$password)) //Comprobamos que existe el nombre de usuario en la base de datos
     {
-        if (contraseñaCorrecta($nombre,$password))  //Comprobamos q la contraseña sea la adecuada (y exista)
+        //Comprobamos q la contraseña sea la adecuada (y exista)
         {
             if (getRol($nombre)=="admin")   //Según su rol
             {
-                header("Location:../vista/listado.php?mal=2");  
+                $ruta = IniciaSesion($nombre,$password);
+                header("Location:../vista/listado.php?mal=2&sesion=$ruta");  
             }
             else {
                 //Es un mindundi
